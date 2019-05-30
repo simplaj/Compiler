@@ -25,4 +25,5 @@
 int main()
 {
 	lex_ana("in.txt");
+
 }

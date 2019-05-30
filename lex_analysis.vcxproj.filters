@@ -15,11 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lex_analysis.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="out.txt">
       <Filter>资源文件</Filter>
     </Text>
@@ -34,5 +29,13 @@
     <ClInclude Include="Lex_ana.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Ga.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Analysis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
