@@ -19,4 +19,20 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="out.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="in.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="GAin.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lex_ana.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

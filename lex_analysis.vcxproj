@@ -153,6 +153,14 @@
   <ItemGroup>
     <ClCompile Include="lex_analysis.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="GAin.txt" />
+    <Text Include="in.txt" />
+    <Text Include="out.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lex_ana.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
