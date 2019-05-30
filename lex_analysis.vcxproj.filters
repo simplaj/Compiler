@@ -32,9 +32,24 @@
     <ClInclude Include="Ga.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LL11.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LL1.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Analysis.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Base.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ll1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

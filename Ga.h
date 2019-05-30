@@ -31,19 +31,19 @@ using namespace std;
 
 char str[50];
 int index = 0;
-void E();			//E->TE_P;
-void E_P();			//E_P->-TE_P | +TE_P|e
-void T();			//T->FT_P
-void T_P();			//T_P->*FT_P | /FT_P|e
+void E();			//E->TX;
+void X();			//X->-TX | +TX|e
+void T();			//T->FY
+void Y();			//Y->*FY | /FY|e
 void F();			//F->(E) | i
 void Gram_Anal(string filename)
 {
 	int len;
 	//cout << "请输入算数表达式：" << endl;
 	ifstream GAin(filename);
-	GAin.getline(str, 50, '\0');
+	GAin.getline(str, 50, '#');
 	len = strlen(str);
-	str[len] = '#';
+	//str[len] = '#';
 	str[len + 1] = '\0';
 	//cout << str << endl;
 	cout << "正在递归向下语法分析...";
@@ -59,9 +59,9 @@ void E()
 {
 	cout << "...";
 	T();
-	E_P();
+	X();
 }
-void E_P()
+void X()
 {
 	cout << "...";
 
@@ -69,7 +69,7 @@ void E_P()
 	{
 		index++;
 		T();
-		E_P();
+		X();
 	}
 	else
 	{
@@ -83,9 +83,9 @@ void T()
 	cout << "...";
 
 	F();
-	T_P();
+	Y();
 }
-void T_P()
+void Y()
 {
 	cout << "...";
 
@@ -93,7 +93,7 @@ void T_P()
 	{
 		index++;
 		F();
-		T_P();
+		Y();
 
 	}
 	else

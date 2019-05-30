@@ -23,8 +23,16 @@
 
 #include "Lex_ana.h"
 #include"Ga.h"
+#include "LL1.h"
+#include<stdlib.h>
+#include"LL11.h"
 int main()
 {
 	lex_ana("in.txt");
-	Gram_Anal("GAin.txt");
+	//Gram_Anal("GAin.txt");
+	//LL_1("GAin.txt");
+
+	res.getResult();
+	system("pause");
+	return 0;
 }

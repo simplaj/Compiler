@@ -153,6 +153,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Analysis.cpp" />
+    <ClCompile Include="Base.cpp" />
+    <ClCompile Include="ll1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GAin.txt" />
@@ -160,8 +162,11 @@
     <Text Include="out.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base.h" />
     <ClInclude Include="Ga.h" />
     <ClInclude Include="Lex_ana.h" />
+    <ClInclude Include="LL11.h" />
+    <ClInclude Include="LL1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
