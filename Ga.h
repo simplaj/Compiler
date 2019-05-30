@@ -32,23 +32,23 @@ using namespace std;
 char str[50];
 int index = 0;
 void E();			//E->TE_P;
-void E_P();			//E_P->ATE_P | e
+void E_P();			//E_P->-TE_P | +TE_P|e
 void T();			//T->FT_P
-void T_P();			//T_P->MFT_P | e
+void T_P();			//T_P->*FT_P | /FT_P|e
 void F();			//F->(E) | i
-void A();			//A->+|-
-void M();			//M->*|/
-void Gram_Anal()
+void Gram_Anal(string filename)
 {
 	int len;
 	//cout << "请输入算数表达式：" << endl;
-	ifstream GAin("GAin.txt");
+	ifstream GAin(filename);
 	GAin.getline(str, 50, '\0');
 	len = strlen(str);
 	str[len] = '#';
 	str[len + 1] = '\0';
-	cout << str << endl;
+	//cout << str << endl;
+	cout << "正在递归向下语法分析...";
 	E();
+	cout << endl;
 	cout << "正确语句！" << endl;
 	strcpy(str, "");
 	index = 0;
@@ -57,28 +57,56 @@ void Gram_Anal()
 
 void E()
 {
+	cout << "...";
 	T();
 	E_P();
 }
 void E_P()
 {
-	A();
-	T();
-	E_P();
+	cout << "...";
+
+	if (str[index] == '+'|| str[index] == '-')
+	{
+		index++;
+		T();
+		E_P();
+	}
+	else
+	{
+		index++;
+		//cout << "EPerror" << endl;
+		//exit(0);
+	}
 }
 void T()
 {
+	cout << "...";
+
 	F();
 	T_P();
 }
 void T_P()
 {
-	M();
-	F();
-	T_P();
+	cout << "...";
+
+	if (str[index] == '*'|| str[index] == '/')
+	{
+		index++;
+		F();
+		T_P();
+
+	}
+	else
+	{
+		index++;
+		//cout << "TPerror" << endl;
+
+	}
 }
 void F()
 {
+	cout << "...";
+
 	if (str[index] == 'i' )
 	{
 		index++;
@@ -92,39 +120,46 @@ void F()
 			index++;
 		}
 		else {
-			cout << "F1分析失败!" << endl;
+			cout << endl;
+			cout << "Error!" << endl;
+
 			exit(0);
 		}
 	}
 	else 
 	{
-		cout << "F2分析失败!" << endl;
-	}
-}
-void A()
-{
-	if (str[index] == '+')
-	{
-		index++;
-	}
-	else if (str[index] == '-')
-	{
-		index++;
-	}
-	else
-		cout << "Aerror" << endl;
-}
+		cout << endl;
+		cout << "Error!" << endl;
 
-void M()
-{
-	if (str[index] == '*')
-	{
-		index++;
+		exit(0);
 	}
-	else if (str[index] == '/')
-	{
-		index++;
-	}
-	else
-		cout << "Merror" << endl;
 }
+//void A()
+//{
+//	if (str[index] == '+')
+//	{
+//		index++;
+//	}
+//	else if (str[index] == '-')
+//	{
+//		index++;
+//	}
+//	else
+//		cout << "error" << index << endl;
+//
+//}
+//
+//void M()
+//{
+//	if (str[index] == '*')
+//	{
+//		index++;
+//	}
+//	else if (str[index] == '/')
+//	{
+//		index++;
+//	}
+//	else
+//		cout << "error" << index << endl;
+//
+//}

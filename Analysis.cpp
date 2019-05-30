@@ -26,5 +26,5 @@
 int main()
 {
 	lex_ana("in.txt");
-	Gram_Anal();
+	Gram_Anal("GAin.txt");
 }

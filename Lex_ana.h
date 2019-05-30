@@ -333,7 +333,7 @@ void lex_ana(string filename)
 	fin.close();
 	ofstream fout("out.txt");
 	ofstream GAout("GAin.txt");
-	cout << "正在分析...";
+	cout << "正在词法分析...";
 	while (syn != 0)
 	{
 		scan(syn, &repo[0], &read[0], p);
