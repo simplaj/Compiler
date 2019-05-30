@@ -22,9 +22,11 @@
  */
 
 #include "Lex_ana.h"
-#include"Ga.h"
+#include "Ga.h"
 int main()
 {
-	lex_ana("in.txt");
+	//lex_ana("in.txt");
 	Gram_Anal();
+	cout << "???" << endl;
+
 }

@@ -25,6 +25,7 @@
 #include<stdio.h>
 #include<string>
 #include <iostream>
+#include<fstream>
 
 using namespace std;
 
@@ -40,20 +41,18 @@ void M();			//M->*|/
 void Gram_Anal()
 {
 	int len;
-	int m;
-	cout << "请输入要测试的次数：";
-	cin >> m;
-	while (m--)
-	{
-		cout << "请输入算数表达式：" << endl;
-		len = strlen(str);
-		str[len] = '#';
-		str[len + 1] = '\0';
-		E();
-		cout << "正确语句！" << endl;
-		strcpy(str, "");
-		index = 0;
-	}
+	//cout << "请输入算数表达式：" << endl;
+	ifstream GAin("GAin.txt");
+	GAin.getline(str, 50, '\0');
+	len = strlen(str);
+	str[len] = '#';
+	str[len + 1] = '\0';
+	cout << str << endl;
+	E();
+	cout << "正确语句！" << endl;
+	strcpy(str, "");
+	index = 0;
+
 }
 
 void E()
@@ -80,7 +79,7 @@ void T_P()
 }
 void F()
 {
-	if (str[index] == '99' || str[index] == '100')
+	if (str[index] == 'i' )
 	{
 		index++;
 	}
@@ -93,13 +92,13 @@ void F()
 			index++;
 		}
 		else {
-			cout << "分析失败!" << endl;
+			cout << "F1分析失败!" << endl;
 			exit(0);
 		}
 	}
-	else {
-		cout << "分析失败!" << endl;
-		exit(0);
+	else 
+	{
+		cout << "F2分析失败!" << endl;
 	}
 }
 void A()
@@ -113,7 +112,7 @@ void A()
 		index++;
 	}
 	else
-		cout << "error" << endl;
+		cout << "Aerror" << endl;
 }
 
 void M()
@@ -127,5 +126,5 @@ void M()
 		index++;
 	}
 	else
-		cout << "error" << endl;
+		cout << "Merror" << endl;
 }

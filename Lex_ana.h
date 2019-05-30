@@ -343,10 +343,10 @@ void lex_ana(string filename)
 			fout << "<" << read << "," << syn << ">" << endl;
 			if (syn != 99 && syn != 100)
 			{
-				GAout << read << endl;
+				GAout << read ;
 			}
 			else
-				GAout << syn << endl;
+				GAout << "i" ;
 		}
 	}
 	fout.close();
