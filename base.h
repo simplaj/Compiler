@@ -19,7 +19,7 @@ struct node {  // 产生式的数据结构
 class Base {
 protected:
 	int T;
-	node production[maxsize]; // 产生式集
+	node p[maxsize]; // 产生式集
 
 	set<char> firstSet[maxsize];  // First集
 	set<char> followSet[maxsize];  // Follow集

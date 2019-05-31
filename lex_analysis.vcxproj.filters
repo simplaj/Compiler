@@ -27,6 +27,15 @@
     <Text Include="LL1in.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="LL1in1.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="LL1in2.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="jieguo.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lex_ana.h">
@@ -38,10 +47,10 @@
     <ClInclude Include="base.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="LL11.h">
+    <ClInclude Include="LL1.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="LL1.h">
+    <ClInclude Include="cl.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,6 +59,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Base.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ll1.cpp">

@@ -25,14 +25,14 @@
 #include"Ga.h"
 #include "LL1.h"
 #include<stdlib.h>
-#include"LL11.h"
+#include "cl.h"
 int main()
 {
 	lex_ana("in.txt");
-	//Gram_Anal("GAin.txt");
-	//LL_1("GAin.txt");
-	LL1 res;
-	res.getResult();
-	system("pause");
+	Gram_Anal("GAin.txt");
+	LL1 Answer;
+	Answer.getResult();
+	//system("pause");
+	//Clear_Left();
 	return 0;
 }

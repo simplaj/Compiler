@@ -1,3 +1,25 @@
+/*
+ * _ooOoo_
+ * o8888888o
+ * 88" . "88
+ * (| -_- |)
+ *  O\ = /O
+ * ___/`---'\____
+ * .   ' \\| |// `.
+ * / \\||| : |||// \
+ * / _||||| -:- |||||- \
+ * | | \\\ - /// | |
+ * | \_| ''\---/'' | |
+ * \ .-\__ `-` ___/-. /
+ * ___`. .' /--.--\ `. . __
+ * ."" '< `.___\_<|>_/___.' >'"".
+ * | | : `- \`.;`\ _ /`;.`/ - ` : | |
+ * \ \ `-. \_ __\ /__ _/ .-` / /
+ * ======`-.____`-.___\_____/___.-`____.-'======
+ * `=---='
+ *          .............................................
+ *           佛曰：bug泛滥，我已瘫痪！
+ */
 #include "Base.h"
 #include<fstream>
 
@@ -26,13 +48,13 @@ void Base::getFirst(char target) {  // 求FIRST(target）
 	int isEmpty = 0;
 	int targetIndex = getNIndex(target);
 	for (int i = 0; i < T; i++) {
-		if (production[i].left == target) {  // 匹配产生式左部
-			if (!isNonterminal(production[i].right[0])) {  // 对于终结符，直接加入first
-				firstSet[targetIndex].insert(production[i].right[0]);
+		if (p[i].left == target) {  // 匹配产生式左部
+			if (!isNonterminal(p[i].right[0])) {  // 对于终结符，直接加入first
+				firstSet[targetIndex].insert(p[i].right[0]);
 			}
 			else {
-				for (int j = 0; j < production[i].right.length(); j++) { // X->Y1..Yj..Yk是一个产生式
-					char Yj = production[i].right[j];
+				for (int j = 0; j < p[i].right.length(); j++) { // X->Y1..Yj..Yk是一个产生式
+					char Yj = p[i].right[j];
 					if (!isNonterminal(Yj)) {  // Yj是终结符(不能产生空),FIRST(Yj)=Yj加入FIRST(X),不能继续迭代,结束
 						firstSet[targetIndex].insert(Yj);
 						break;
@@ -54,7 +76,7 @@ void Base::getFirst(char target) {  // 求FIRST(target）
 						isEmpty = 0;
 					}
 				}
-				if (countEmpty == production[i].right.length())//所有右部first(Y)都有$(空),将$加入FIRST(X)中
+				if (countEmpty == p[i].right.length())//所有右部first(Y)都有$(空),将$加入FIRST(X)中
 					firstSet[getNIndex(target)].insert('$');
 			}
 		}
@@ -65,9 +87,9 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 	int targetIndex = getNIndex(target);
 	for (int i = 0; i < T; i++) {
 		int index = -1;
-		int len = production[i].right.length();
+		int len = p[i].right.length();
 		for (int j = 0; j < len; j++) {  // 寻找target在产生式中的位置index
-			if (production[i].right[j] == target) {
+			if (p[i].right[j] == target) {
 				index = j;
 				break;
 			}
@@ -75,7 +97,7 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 		if (index != -1 && index < len - 1) {  // 找到target在产生式中的位置index
 											   // 存在A->αBβ, 将FIRST(β)中除了空$之外的所有放入FOLLOW(B)中
 											   // 这里B对应target, β对应nxt
-			char nxt = production[i].right[index + 1];
+			char nxt = p[i].right[index + 1];
 			if (!isNonterminal(nxt)) {  // β是终结符 FIRST(β)=β，直接插入β
 				followSet[targetIndex].insert(nxt);
 			}
@@ -90,21 +112,21 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 						followSet[targetIndex].insert(*it);
 				}
 
-				if (hasEmpty && production[i].left != target) { // 存在A->αBβ且FIRST(β)->$
+				if (hasEmpty && p[i].left != target) { // 存在A->αBβ且FIRST(β)->$
 															 // FOLLOW(A)放在FOLLOW(B)中
-					getFollow(production[i].left);
+					getFollow(p[i].left);
 					set<char>::iterator it;
-					char tmp = production[i].left;
+					char tmp = p[i].left;
 					int tmpIndex = getNIndex(tmp);
 					for (it = followSet[tmpIndex].begin(); it != followSet[tmpIndex].end(); it++)
 						followSet[targetIndex].insert(*it);
 				}
 			}
 		}
-		else if (index != -1 && index == len - 1 && target != production[i].left) {  // 存在A->αB ,FOLLOW(A)放在FOLLOW(B)中
-			getFollow(production[i].left);
+		else if (index != -1 && index == len - 1 && target != p[i].left) {  // 存在A->αB ,FOLLOW(A)放在FOLLOW(B)中
+			getFollow(p[i].left);
 			set<char>::iterator it;
-			char tmp = production[i].left;
+			char tmp = p[i].left;
 			int tmpIndex = getNIndex(tmp);
 			for (it = followSet[tmpIndex].begin(); it != followSet[tmpIndex].end(); it++)
 				followSet[targetIndex].insert(*it);
@@ -114,9 +136,6 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 
 void Base::inputAndSolve() {  // 处理和求出First和Follow集
 	string s;
-	//cout << "输入的产生式的个数：" << endl;
-	//cin >> T;
-	//cout << "输入的产生式：" << endl;
 	ifstream fin("LL1in.txt");
 	string strVec[50];
 	int i = 0;
@@ -136,9 +155,9 @@ void Base::inputAndSolve() {  // 处理和求出First和Follow集
 			if (s[i] != ' ')
 				temp += s[i];
 		}
-		production[index].left = temp[0];  // 产生式的左部
+		p[index].left = temp[0];  // 产生式的左部
 		for (int i = 3; i < temp.length(); i++) // 产生式的右部
-			production[index].right += temp[i];
+			p[index].right += temp[i];
 
 		for (int i = 0; i < temp.length(); i++) {  // 存储所有终结符和非终结符
 			if (i == 1 || i == 2) continue;  // 跳过产生符号->
@@ -150,7 +169,8 @@ void Base::inputAndSolve() {  // 处理和求出First和Follow集
 						break;
 					}
 				}
-				if (!flag) nonterminal.push_back(temp[i]);
+				if (!flag) 
+					nonterminal.push_back(temp[i]);
 			}
 			else {                       //插入一个终结符
 				int flag = 0;
@@ -160,10 +180,52 @@ void Base::inputAndSolve() {  // 处理和求出First和Follow集
 						break;
 					}
 				}
-				if (!flag) terminal.push_back(temp[i]);
+				if (!flag) 
+					terminal.push_back(temp[i]);
 			}
 		}
 	}
+
+	for (int i = 0; i < T; i++)
+	{
+		int flag = 0;
+		if (p[i].left == p[i].right[0])
+		{
+			flag++;
+			if (flag != 0)
+			{
+				for (int i = 0; i < T; i++)
+				{
+					if (p[i].left == p[i].right[0])
+					{
+						string str;
+						char t1;
+						str = p[i].right.substr(1, p[i].right.size());
+						char temp[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+							'O','P','Q','R','S','T','U','V','W','X','Y','Z' };
+						for (int i = 0; i < 26; i++)
+						{
+							int flag = 1;
+							for(int j = 0;j<nonterminal.size();j++)
+							{
+								if (temp[i] == nonterminal[j])
+									flag = 0;
+
+							}
+							if (flag)
+							{
+								t1 = temp[i];
+							}
+						}
+						p[i].right = str + t1;
+						p[i].left = t1;
+					}
+				}
+			}
+		}
+	}
+
+
 	terminal.push_back('#');
 
 	for (int i = 0; i < terminal.size(); i++) { // 存储没有$符号的终结符

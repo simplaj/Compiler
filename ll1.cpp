@@ -1,3 +1,25 @@
+/*
+ * _ooOoo_
+ * o8888888o
+ * 88" . "88
+ * (| -_- |)
+ *  O\ = /O
+ * ___/`---'\____
+ * .   ' \\| |// `.
+ * / \\||| : |||// \
+ * / _||||| -:- |||||- \
+ * | | \\\ - /// | |
+ * | \_| ''\---/'' | |
+ * \ .-\__ `-` ___/-. /
+ * ___`. .' /--.--\ `. . __
+ * ."" '< `.___\_<|>_/___.' >'"".
+ * | | : `- \`.;`\ _ /`;.`/ - ` : | |
+ * \ \ `-. \_ __\ /__ _/ .-` / /
+ * ======`-.____`-.___\_____/___.-`____.-'======
+ * `=---='
+ *          .............................................
+ *           佛曰：bug泛滥，我已瘫痪！
+ */
 #include"LL1.h"
 #include<fstream>
 //using namespace LL1;
@@ -8,10 +30,10 @@ LL1::LL1() {
 
 void LL1::getTable() {
 	for (int index = 0; index < T; index++) {                          // 对于每个产生式(编号index):A->α
-		int row = getNIndex(production[index].left);
+		int row = getNIndex(p[index].left);
 		int emptyCount = 0;
-		for (int i = 0; i < production[index].right.size(); i++) { // 1) 对FIRST(α)中的每个终结符号a,将index加入(A, a)中
-			char tmp = production[index].right[i];
+		for (int i = 0; i < p[index].right.size(); i++) { // 1) 对FIRST(α)中的每个终结符号a,将index加入(A, a)中
+			char tmp = p[index].right[i];
 			if (!isNonterminal(tmp)) { // tmp是终结符          
 				if (tmp != '$')
 					tableMap[row][getIndex(tmp)] = index;
@@ -37,7 +59,7 @@ void LL1::getTable() {
 		}
 
 		// 2) 如果空$在FIRST(α)中,对FOLLOW(A)中的每个终结符或结束符b,将i加入(A,b)中
-		if (emptyCount == production[index].right.size()) {
+		if (emptyCount == p[index].right.size()) {
 			set<char>::iterator  it;
 			for (it = followSet[row].begin(); it != followSet[row].end(); it++) {
 				tableMap[row][getIndex(*it)] = index;
@@ -83,12 +105,12 @@ void LL1::analyExpression(string s) {
 			int tg = tableMap[getNIndex(char1)][getIndex(char2)];
 			analyStack.pop_back();
 
-			if (production[tg].right != "$") {
-				for (int i = production[tg].right.length() - 1; i >= 0; i--) // 注意这里是反向的
-					analyStack.push_back(production[tg].right[i]);
+			if (p[tg].right != "$") {
+				for (int i = p[tg].right.length() - 1; i >= 0; i--) // 注意这里是反向的
+					analyStack.push_back(p[tg].right[i]);
 			}
 
-			cout << setw(15) << "推导：" << production[tg].left << "->" << production[tg].right << endl;
+			cout << setw(15) << "推导：" << p[tg].left << "->" << p[tg].right << endl;
 		}
 		else {  // 错误
 			cout << setw(15) << "error!" << endl;
@@ -109,7 +131,7 @@ void LL1::printPredictTable() {
 			if (tableMap[i][j] == -1)
 				cout << setw(10) << "   ";
 			else
-				cout << setw(10) << production[tableMap[i][j]].right;
+				cout << setw(10) << p[tableMap[i][j]].right;
 		}
 		cout << endl;
 	}
