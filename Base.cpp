@@ -1,4 +1,5 @@
 #include "Base.h"
+#include<fstream>
 
 bool Base::isNonterminal(char c) { // 判断c是否为非终结符
 	if (c >= 'A' && c <= 'Z')
@@ -113,11 +114,23 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 
 void Base::inputAndSolve() {  // 处理和求出First和Follow集
 	string s;
-	cout << "输入的产生式的个数：" << endl;
-	cin >> T;
-	cout << "输入的产生式：" << endl;
+	//cout << "输入的产生式的个数：" << endl;
+	//cin >> T;
+	//cout << "输入的产生式：" << endl;
+	ifstream fin("LL1in.txt");
+	string strVec[50];
+	int i = 0;
+	while (!fin.eof())
+	{
+		string inbuf;
+		getline(fin, inbuf, '\n');
+		strVec[i] = inbuf;
+		i = i + 1;
+	}
+	fin.close();
+	T = i-1;
 	for (int index = 0; index < T; index++) {  // 处理每一个产生式
-		cin >> s;
+		s = strVec[index];
 		string temp = "";  // 存储去掉空格的产生式
 		for (int i = 0; i < s.length(); i++) {  // 去掉产生式中的' '
 			if (s[i] != ' ')

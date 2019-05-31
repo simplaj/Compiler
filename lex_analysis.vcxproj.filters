@@ -24,6 +24,9 @@
     <Text Include="GAin.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="LL1in.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lex_ana.h">

@@ -1,4 +1,6 @@
 #include"LL1.h"
+#include<fstream>
+//using namespace LL1;
 
 LL1::LL1() {
 	memset(tableMap, -1, sizeof(tableMap));
@@ -121,8 +123,11 @@ void LL1::getResult() {
 	printPredictTable();
 	//’ª∆•≈‰
 	string ss;
-	cout << "«Î ‰»Î∑˚∫≈¥Æ£∫" << endl;
-	cin >> ss;
+	//cout << "«Î ‰»Î∑˚∫≈¥Æ£∫" << endl;
+	char sin[50];
+	ifstream fin("GAin.txt");
+	fin.getline(sin,50);
+	ss = sin;
 	cout << setw(15) << "∑÷Œˆ’ª" << setw(15) << " £”‡ ‰»Î¥Æ" << setw(15) << "Õ∆µº Ω" << endl;
 	analyExpression(ss);
 

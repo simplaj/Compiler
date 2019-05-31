@@ -31,7 +31,7 @@ int main()
 	lex_ana("in.txt");
 	//Gram_Anal("GAin.txt");
 	//LL_1("GAin.txt");
-
+	LL1 res;
 	res.getResult();
 	system("pause");
 	return 0;

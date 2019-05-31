@@ -350,7 +350,7 @@ void lex_ana(string filename)
 		}
 	}
 	fout.close();
-	GAout << '$';
+	//GAout << '$';
 	GAout.close();
 	cout << endl;
 	cout << "·ÖÎöÍê³É£¡" << endl;

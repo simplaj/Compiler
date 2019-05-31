@@ -159,6 +159,7 @@
   <ItemGroup>
     <Text Include="GAin.txt" />
     <Text Include="in.txt" />
+    <Text Include="LL1in.txt" />
     <Text Include="out.txt" />
   </ItemGroup>
   <ItemGroup>

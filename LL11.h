@@ -32,7 +32,7 @@
 using namespace std;
 
 //表格数组
-char LL1[50][50][100] = { {"->TX","null" ,"null","null" ,"null","->TX", "null", "null" },
+char LL11[50][50][100] = { {"->TX","null" ,"null","null" ,"null","->TX", "null", "null" },
 						 {"->FY","null" ,"null","null" ,"null", "->FY", "null", "null"},
 						 {"null","->+TX" ,"->-TX" ,"null","null","null" , "->$","->$" },
 						 {"->i","null" ,"null" ,"null"  ,"null","->(E)","null","null" },
@@ -91,8 +91,8 @@ void analyze(char str[], int len)
 			y = findc(str[i]);
 			if (x != -1 && y != -1)
 			{
-				int len2 = strlen(LL1[x][y]);
-				if (strcmp(LL1[x][y], "null") == 0)
+				int len2 = strlen(LL11[x][y]);
+				if (strcmp(LL11[x][y], "null") == 0)
 				{
 					i = error(i, cnt, len, p, str);
 					cout << '1';
@@ -104,12 +104,12 @@ void analyze(char str[], int len)
 					p[pindex] = '\0';
 					pindex--;
 				}
-				if (LL1[x][y][2] != '$')
+				if (LL11[x][y][2] != '$')
 				{
 					for (int q = len2 - 1; q > 1; q--)
 					{
-						p[pindex++] = LL1[x][y][q];
-						cmp.push(LL1[x][y][q]);
+						p[pindex++] = LL11[x][y][q];
+						cmp.push(LL11[x][y][q]);
 					}
 				}
 				else
@@ -121,7 +121,7 @@ void analyze(char str[], int len)
 				{
 					cout << str[q];
 				}
-				printf("\t%c%s\n", ch, LL1[x][y]);
+				printf("\t%c%s\n", ch, LL11[x][y]);
 			}
 			else
 			{
@@ -171,7 +171,7 @@ void LL_1(string filename)
 	/*for(int i = 0; i < 5; i++)
 	{
 		for(int j = 0 ; j < 6; j++)
-			printf("%5s",LL1[i][j]);
+			printf("%5s",LL11[i][j]);
 			cout<<endl;
 	}*/
 	char str[200];
