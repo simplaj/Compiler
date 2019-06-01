@@ -331,8 +331,8 @@ void lex_ana(string filename)
 	fin.getline(repo, 9999, '￥');
 	l = strlen(repo);
 	fin.close();
-	ofstream fout("out.txt");
-	ofstream GAout("GAin.txt");
+	ofstream fout("二元序列.txt");
+	ofstream GAout("词法分析后.txt");
 	cout << "正在词法分析...";
 	while (syn != 0)
 	{

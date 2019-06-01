@@ -136,7 +136,7 @@ void Base::getFollow(char target) {  // 求FOLLOW(target）
 
 void Base::inputAndSolve() {  // 处理和求出First和Follow集
 	string s;
-	ifstream fin("LL1in.txt");
+	ifstream fin("消除左递归后文法.txt");
 	string strVec[50];
 	int i = 0;
 	while (!fin.eof())
@@ -185,46 +185,6 @@ void Base::inputAndSolve() {  // 处理和求出First和Follow集
 			}
 		}
 	}
-
-	for (int i = 0; i < T; i++)
-	{
-		int flag = 0;
-		if (p[i].left == p[i].right[0])
-		{
-			flag++;
-			if (flag != 0)
-			{
-				for (int i = 0; i < T; i++)
-				{
-					if (p[i].left == p[i].right[0])
-					{
-						string str;
-						char t1;
-						str = p[i].right.substr(1, p[i].right.size());
-						char temp[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
-							'O','P','Q','R','S','T','U','V','W','X','Y','Z' };
-						for (int i = 0; i < 26; i++)
-						{
-							int flag = 1;
-							for(int j = 0;j<nonterminal.size();j++)
-							{
-								if (temp[i] == nonterminal[j])
-									flag = 0;
-
-							}
-							if (flag)
-							{
-								t1 = temp[i];
-							}
-						}
-						p[i].right = str + t1;
-						p[i].left = t1;
-					}
-				}
-			}
-		}
-	}
-
 
 	terminal.push_back('#');
 

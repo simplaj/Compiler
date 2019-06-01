@@ -106,7 +106,7 @@ void LL1::analyExpression(string s) {
 			analyStack.pop_back();
 
 			if (p[tg].right != "$") {
-				for (int i = p[tg].right.length() - 1; i >= 0; i--) // 注意这里是反向的
+				for (int i = p[tg].right.length() - 1; i >= 0; i--) // 反向
 					analyStack.push_back(p[tg].right[i]);
 			}
 
@@ -147,7 +147,7 @@ void LL1::getResult() {
 	string ss;
 	//cout << "请输入符号串：" << endl;
 	char sin[50];
-	ifstream fin("GAin.txt");
+	ifstream fin("词法分析后.txt");
 	fin.getline(sin,50);
 	ss = sin;
 	cout << setw(15) << "分析栈" << setw(15) << "剩余输入串" << setw(15) << "推导式" << endl;

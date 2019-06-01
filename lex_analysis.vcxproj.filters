@@ -15,25 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="out.txt">
+    <Text Include="消除左递归前文法.txt">
       <Filter>资源文件</Filter>
     </Text>
-    <Text Include="in.txt">
+    <Text Include="消除左递归后文法.txt">
       <Filter>资源文件</Filter>
     </Text>
-    <Text Include="GAin.txt">
+    <Text Include="语句输入.txt">
       <Filter>资源文件</Filter>
     </Text>
-    <Text Include="LL1in.txt">
+    <Text Include="词法分析后.txt">
       <Filter>资源文件</Filter>
     </Text>
-    <Text Include="LL1in1.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="LL1in2.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="jieguo.txt">
+    <Text Include="二元序列.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>
@@ -59,9 +53,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Base.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="cl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ll1.cpp">

@@ -28,11 +28,13 @@
 #include "cl.h"
 int main()
 {
-	lex_ana("in.txt");
-	Gram_Anal("GAin.txt");
+	lex_ana("语句输入.txt");system("pause");
+	Gram_Anal("词法分析后.txt"); system("pause");
+	Clear_Left(); 
+	cout << "左递归消除完毕" << endl;
+	system("pause");
 	LL1 Answer;
 	Answer.getResult();
-	//system("pause");
-	//Clear_Left();
+	system("pause");
 	return 0;
 }
