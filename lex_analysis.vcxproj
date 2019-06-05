@@ -167,6 +167,7 @@
     <ClInclude Include="base.h" />
     <ClInclude Include="cl.h" />
     <ClInclude Include="Ga.h" />
+    <ClInclude Include="left_gene.h" />
     <ClInclude Include="Lex_ana.h" />
     <ClInclude Include="LL1.h" />
   </ItemGroup>

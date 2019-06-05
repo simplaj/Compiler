@@ -43,10 +43,21 @@ struct pre_d
 	string left;
 	char right;
 };
+struct pre_d2
+{
+	string left;
+	string right;
+};
 struct pre_pro p[100];
 struct pre_d pd[100];
+struct pre_pro p2[100];
+struct pre_d2 pd2[100];
+
 static  int pdcnt = 0;
+static int pdcnt2 = 0;
+
 static int count1 = 0;
+
 vector <char> terminal, nonterminal;
 
 bool isNonterminal(char c) { // 判断c是否为非终结符
@@ -118,12 +129,10 @@ void display_pd(pre_d* pd)
 		cout << pd[i].left << "=" << pd[i].right << endl;
 	}
 }
-void Clear_Left()
-
+int read(int i,pre_pro *p,string filename) 
 {
-	int i = 0, j, flag = 0, count = 1, n; 
 	string s;
-	ifstream fin("消除左递归前文法.txt");
+	ifstream fin(filename);
 	string strVec[50];
 	while (!fin.eof())
 	{
@@ -171,7 +180,13 @@ void Clear_Left()
 			}
 		}
 	}
-	n = T;
+	return T;
+}
+void Clear_Left()
+
+{
+	int i = 0, j, flag = 0, count = 1, n;
+	n = read(i,p,"消除左递归前文法.txt");
 	count = nonterminal.size()-1;
 	count1 = n;
 	flag = 0;
@@ -295,4 +310,32 @@ void Clear_Left()
 				continue;
 	}
 	//display_pd(pd);
+}
+void re_left_gene()
+{
+	int i = 0, n;
+	n = read(i,p2,"消除左递归后文法.txt");
+	for (int j = 0; j < n; j++)
+	{
+		int g = 0;
+		for (int k = 0; k < n; k++)
+		{
+			if (p2[j].left == p2[k].left && p2[j].left[g] == p2[k].left[g] && j != k)
+			{
+				string str;
+				str = p2[k].right.substr(0, g);
+				pd2[pdcnt].left = p2[k].left;
+				pd2[pdcnt++].right = str;
+				for (int m = 0; m < pdcnt2; m++)
+				{
+					
+					if (p2[j].left == pd2[m].left && str != pd2[m].right)
+					{
+
+					}
+				}
+				g++;
+			}
+		}
+	}
 }

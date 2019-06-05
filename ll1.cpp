@@ -149,6 +149,7 @@ void LL1::getResult() {
 	char sin[50];
 	ifstream fin("词法分析后.txt");
 	fin.getline(sin,50);
+	fin.close();
 	ss = sin;
 	cout << setw(15) << "分析栈" << setw(15) << "剩余输入串" << setw(15) << "推导式" << endl;
 	analyExpression(ss);
